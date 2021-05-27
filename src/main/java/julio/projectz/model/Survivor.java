@@ -15,27 +15,27 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity( name = "Person" )
+@Entity( name = "Survivor" )
 @Table(
-		name = "persons",
+		name = "survivors",
 		uniqueConstraints = {
-				@UniqueConstraint( name = "uk_person_unique_email", columnNames = "email")
+				@UniqueConstraint( name = "uk_survivor_unique_email", columnNames = "email")
 		}
 )
 
 
-public @Data class Person {
+public @Data class Survivor {
 	
 	@Id
 	@SequenceGenerator(
-			name = "person_sequence",
-			sequenceName = "person_sequence",
+			name = "survivor_sequence",
+			sequenceName = "survivor_sequence",
 			allocationSize = 1,
 			initialValue = 1
 			)
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
-			generator = "person_sequence"
+			generator = "survivor_sequence"
 			)
 	private Long id;
 	
