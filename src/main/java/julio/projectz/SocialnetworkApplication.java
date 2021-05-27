@@ -1,4 +1,4 @@
-package julio.socialnetwork.socialnetwork;
+package julio.projectz;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import julio.socialnetwork.socialnetwork.model.Person;
-import julio.socialnetwork.socialnetwork.repository.PersonRepository;
+import julio.projectz.model.Person;
+import julio.projectz.repository.PersonRepository;
 
 @SpringBootApplication
 public class SocialnetworkApplication {

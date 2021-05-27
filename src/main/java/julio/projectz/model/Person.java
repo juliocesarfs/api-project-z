@@ -1,4 +1,4 @@
-package julio.socialnetwork.socialnetwork.model;
+package julio.projectz.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

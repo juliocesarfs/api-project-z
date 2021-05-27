@@ -1,4 +1,4 @@
-package julio.socialnetwork.socialnetwork.service;
+package julio.projectz.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import julio.socialnetwork.socialnetwork.model.Person;
-import julio.socialnetwork.socialnetwork.repository.PersonRepository;
+import julio.projectz.model.Person;
+import julio.projectz.repository.PersonRepository;
 
 @Service
 public class PersonService {

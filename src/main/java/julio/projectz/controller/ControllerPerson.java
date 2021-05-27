@@ -1,4 +1,4 @@
-package julio.socialnetwork.socialnetwork.controller;
+package julio.projectz.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import julio.socialnetwork.socialnetwork.model.Person;
-import julio.socialnetwork.socialnetwork.service.PersonService;
+import julio.projectz.model.Person;
+import julio.projectz.service.PersonService;
 
 @RestController
 @RequestMapping( path = "api/v1/person")
