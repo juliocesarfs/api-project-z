@@ -1,5 +1,7 @@
 package julio.projectz.model;
 
+import java.time.Instant;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.GenerationType;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(
 		name = "survivors",
 		uniqueConstraints = {
-				@UniqueConstraint( name = "uk_survivor_unique_email", columnNames = "email")
+				@UniqueConstraint( name = "uk_survivor_unique_CPF", columnNames = "CPF")
 		}
 )
 
@@ -39,21 +49,28 @@ public @Data class Survivor {
 			)
 	private Long id;
 	
+	@NotEmpty( message = "{firstName.not.empty}")
 	@Column( name = "firstName", nullable = false, length = 200 )
 	private String firstName;
 	
+	@NotEmpty( message = "{lastName.not.empty}")
 	@Column( name = "lastName", nullable = false, length = 150 )
 	private String lastName;
 	
-	@Column( name = "email", nullable = false, length = 250 )
-	private String email;
+	@CPF( message = "{CPF.valid}")
+	@Column( name = "CPF", nullable = false, length = 11 )
+	private String CPF;
 	
-	@Column( name = "age", nullable = false )
-	private Integer age;
+	@Past( message = "{birthDate.valid}")
+	@Column( name = "birthDay", nullable = false )
+	private Instant birthDate;
 	
 	@Column( name = "description", nullable = true, length = 400 )
 	private String description;
 	
-	@Column( name = "likes", nullable = true )
-	private Integer likes;
+	@Column( name = "flags", nullable = true )
+	private Integer flags;
+	
+	@Column( name = "infected", nullable = true )
+	private Boolean infected;
 }

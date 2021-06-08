@@ -1,5 +1,6 @@
 package julio.projectz;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -20,13 +21,8 @@ public class ProjectZApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(SurvivorRepository survivorRepository) {
 		return args -> {
-			Survivor survivor = new Survivor(null, "Julio", "Silva", "julio@gmail.com", 22, "Oi eu gosto de coca-cola", 0);
+			Survivor survivor = new Survivor(null, "Julio", "Silva", "06958751167", Instant.ofEpochMilli(1335205592410L), "Oi eu gosto de coca-cola", 0, false);
 			survivor = survivorRepository.save(survivor);
-			
-			survivor.setAge(24);
-			
-			Survivor survivor2 = new Survivor(null, "Maria", "Silva", "maria@gmail.com", 32, "Oi eu gosto de coca-cola", 0);
-			survivorRepository.save(survivor2);
 			
 			List<Survivor> survivors = survivorRepository.findAll();
 			

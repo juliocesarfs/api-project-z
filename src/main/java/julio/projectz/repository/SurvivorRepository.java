@@ -12,15 +12,15 @@ import julio.projectz.model.Survivor;
 public interface SurvivorRepository extends JpaRepository<Survivor, Long>{
 	
 	List<Survivor> findAllByFirstName(String firstName);
-	List<Survivor> findByEmail(String email);
+	List<Survivor> findByCPF(String CPF);
 	
 	@Query("" +
 			"SELECT CASE WHEN COUNT(p) > 0 THEN " +
 			"TRUE ELSE FALSE END " +
 			"FROM Survivor p " +
-			"WHERE p.email = ?1"
+			"WHERE p.CPF = ?1"
 	)
-	Boolean existEmail(String email);	
+	Boolean existCPF(String CPF);	
 	
 	
 	/*

@@ -1,8 +1,8 @@
 package julio.projectz.service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,16 @@ public class SurvivorService {
 	
 	public Survivor include(Survivor survivor) {
 		
-		Boolean existEmail = survivorRepository.existEmail(survivor.getEmail());
-		if (existEmail) {
-			throw new IllegalStateException("Email: "+survivor.getEmail()+" já está sendo utilizado por outra conta.");
+		Instant birthDate = survivor.getBirthDate();
+		
+		Boolean existCPF = survivorRepository.existCPF(survivor.getCPF());
+		if (existCPF) {
+			throw new IllegalStateException("CPF: "+survivor.getCPF()+" Já existe um sobrevivente com este CPF.");
 		}
 		
-		survivor.setLikes(0); // todo usuário começa com zero likes
+		survivor.setFlags(0); // todo sobrevivente começa com zero reports
+		survivor.setInfected(false); // todo sobrevivente criado não pode estar infectado
+		survivor.setBirthDate(birthDate);
 		
 		Survivor survivorReturn = survivorRepository.save(survivor);
 		
@@ -73,8 +77,8 @@ public class SurvivorService {
 			survivorDB.setLastName(survivor.getLastName());
 		}
 		
-		if (survivor.getAge() != null) {
-			survivorDB.setAge(survivor.getAge());
+		if (survivor.getBirthDate() != null) {
+			survivorDB.setBirthDate(survivor.getBirthDate());
 		}
 		
 		survivorDB = survivorRepository.save(survivorDB);
@@ -86,20 +90,23 @@ public class SurvivorService {
 		Optional<Survivor> survivor = survivorRepository.findById(idSurvivor);
 		
 		if(!survivor.isPresent()) {
-			throw new IllegalStateException("Não existe Aluno com o ID: "+idSurvivor);
+			throw new IllegalStateException("Não existe sobrevivente com o ID: "+idSurvivor);
 		}
 		return survivor;
 	}
 	
-	public Survivor giveALike(Long idSurvivor) {
+	public Survivor giveAFlag(Long idSurvivor) {
 		Optional<Survivor> survivorOptional = obtainSurvivorIfExist(idSurvivor);
 		
 		Survivor survivorDB = survivorOptional.get();
 		
-		Integer likes = survivorDB.getLikes();
-		likes += 1;
+		Integer flag = survivorDB.getFlags();
+		flag += 1;
 		
-		survivorDB.setLikes(likes);
+		if (flag == 5)
+			survivorDB.setInfected(true);
+		
+		survivorDB.setFlags(flag);
 		
 		survivorDB = survivorRepository.save(survivorDB);
 		

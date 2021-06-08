@@ -2,6 +2,8 @@ package julio.projectz.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +38,7 @@ public class ControllerSurvivor {
 	}
 	
 	@PostMapping
-	public Survivor include(@RequestBody Survivor survivor) {
+	public Survivor include(@RequestBody @Valid Survivor survivor) {
 		return survivorService.include(survivor);
 	}
 	
@@ -56,8 +58,8 @@ public class ControllerSurvivor {
 		return survivorService.getSurvivorsByName(name);
 	}
 	
-	@PatchMapping( path = "{idSurvivor}/like")
-	public Survivor giveALike(@PathVariable("idSurvivor") Long idSurvivor) {		
-		return survivorService.giveALike(idSurvivor);
+	@PatchMapping( path = "{idSurvivor}/flag")
+	public Survivor reportSurvivor(@PathVariable("idSurvivor") Long idSurvivor) {		
+		return survivorService.giveAFlag(idSurvivor);
 	}
 }
