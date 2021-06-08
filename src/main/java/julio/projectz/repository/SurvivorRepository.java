@@ -1,4 +1,4 @@
-package julio.socialnetwork.socialnetwork.repository;
+package julio.projectz.repository;
 
 import java.util.List;
 
@@ -6,29 +6,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import julio.socialnetwork.socialnetwork.model.Person;
+import julio.projectz.model.Survivor;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long>{
+public interface SurvivorRepository extends JpaRepository<Survivor, Long>{
 	
-	List<Person> findAllByFirstName(String firstName);
-	List<Person> findByEmail(String email);
+	List<Survivor> findAllByFirstName(String firstName);
+	List<Survivor> findByCPF(String CPF);
 	
 	@Query("" +
 			"SELECT CASE WHEN COUNT(p) > 0 THEN " +
 			"TRUE ELSE FALSE END " +
-			"FROM Person p " +
-			"WHERE p.email = ?1"
+			"FROM Survivor p " +
+			"WHERE p.CPF = ?1"
 	)
-	Boolean existEmail(String email);	
+	Boolean existCPF(String CPF);	
 	
 	
 	/*
 	@Query( "" +
 			"SELECT firstName, lastName, email, age, description, likes " +
-			"FROM Person p " +
+			"FROM Survivor p " +
 			"WHERE p.firstName like ?1"
 	)
-	List<Person> findByName(String name);
+	List<Survivor> findByName(String name);
 	*/
 }
