@@ -1,6 +1,5 @@
 package julio.projectz.service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +19,6 @@ public class SurvivorService {
 	
 	public Survivor include(Survivor survivor) {
 		
-		Instant birthDate = survivor.getBirthDate();
-		
 		Boolean existCPF = survivorRepository.existCPF(survivor.getCPF());
 		if (existCPF) {
 			throw new IllegalStateException("CPF: "+survivor.getCPF()+" Já existe um sobrevivente com este CPF.");
@@ -29,7 +26,6 @@ public class SurvivorService {
 		
 		survivor.setFlags(0); // todo sobrevivente começa com zero reports
 		survivor.setInfected(false); // todo sobrevivente criado não pode estar infectado
-		survivor.setBirthDate(birthDate);
 		
 		Survivor survivorReturn = survivorRepository.save(survivor);
 		
@@ -77,8 +73,8 @@ public class SurvivorService {
 			survivorDB.setLastName(survivor.getLastName());
 		}
 		
-		if (survivor.getBirthDate() != null) {
-			survivorDB.setBirthDate(survivor.getBirthDate());
+		if (survivor.getAge() != null) {
+			survivorDB.setAge(survivor.getAge());
 		}
 		
 		survivorDB = survivorRepository.save(survivorDB);
