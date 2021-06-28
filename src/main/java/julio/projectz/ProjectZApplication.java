@@ -22,6 +22,7 @@ public class ProjectZApplication {
 	public CommandLineRunner commandLineRunner(SurvivorRepository survivorRepository) {
 		return args -> {
 			Survivor survivor = new Survivor(null, "Julio", "Silva", "06958751167", 22, "Oi eu gosto de coca-cola", 0, false);
+
 			survivor = survivorRepository.save(survivor);
 			
 			List<Survivor> survivors = survivorRepository.findAll();
