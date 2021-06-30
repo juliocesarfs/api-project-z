@@ -48,7 +48,7 @@ public class ControllerSurvivor {
 	}
 	
 	@PatchMapping( path = "{idSurvivor}" )
-	public Survivor update(@RequestBody Survivor survivor, @PathVariable("idSurvivor") long idSurvivor) {
+	public Survivor update(@RequestBody @Valid Survivor survivor, @PathVariable("idSurvivor") long idSurvivor) {
 		return survivorService.update(survivor, idSurvivor);
 	}
 	
