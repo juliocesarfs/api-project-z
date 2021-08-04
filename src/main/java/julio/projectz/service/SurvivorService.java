@@ -92,20 +92,18 @@ public class SurvivorService {
 	}
 	
 	public Survivor giveAFlag(Long idSurvivor) {
-		Optional<Survivor> survivorOptional = obtainSurvivorIfExist(idSurvivor);
+		Survivor survivor = getSurvivor(idSurvivor);
 		
-		Survivor survivorDB = survivorOptional.get();
-		
-		Integer flag = survivorDB.getFlags();
+		Integer flag = survivor.getFlags();
 		flag += 1;
 		
 		if (flag == 5)
-			survivorDB.setInfected(true);
+			survivor.setInfected(true);
 		
-		survivorDB.setFlags(flag);
+		survivor.setFlags(flag);
 		
-		survivorDB = survivorRepository.save(survivorDB);
+		survivor = survivorRepository.save(survivor);
 		
-		return survivorDB;
+		return survivor;
 	}
 }
