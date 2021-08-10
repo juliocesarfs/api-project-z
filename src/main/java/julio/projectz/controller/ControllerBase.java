@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import julio.projectz.model.Base;
@@ -32,10 +31,10 @@ public class ControllerBase {
     return baseService.list();
   }
 
-  @GetMapping( path = "{idBase}" )
-  public Base getBase(@PathVariable("baseName") Long idBase) {
-    return baseService.getBase(idBase);
-  }
+  @GetMapping( path = "{idBase}")
+	public Base getBase(@PathVariable("idBase") Long idBase) {
+		return baseService.getBase(idBase);
+	}
 
   @PostMapping
   public Base include(@RequestBody @Valid Base base) {
@@ -51,15 +50,4 @@ public class ControllerBase {
 	public Base update(@RequestBody @Valid Base base, @PathVariable("idBase") long idBase) {
 		return baseService.update(base, idBase);
 	}
-	
-	@RequestMapping( params = "name", method = RequestMethod.GET )
-	@ResponseBody
-	public Base getBaseByName(@RequestParam("name") String name) {
-		return baseService.getBaseByName(name);
-	}
-
-  @PatchMapping( path = "{idBase}/addSurvivor")
-  public Base addSurvivor(@PathVariable("idSurvivor") Long idBase) {
-    return baseService.addSurvivor(idBase);
-  }
 }

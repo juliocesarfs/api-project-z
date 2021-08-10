@@ -9,6 +9,11 @@ import julio.projectz.model.Base;
 @Repository
 public interface BaseRepository extends JpaRepository<Base, Long>{
 
+
+	@Query("" +
+			"FROM Base b " +
+			"WHERE b.baseName = ?1"
+	)
   Base findByBaseName(String baseName);
 
   @Query("" +
@@ -17,5 +22,5 @@ public interface BaseRepository extends JpaRepository<Base, Long>{
 			"FROM Base b " +
 			"WHERE b.baseName = ?1"
 	)
-	Boolean existBaseName(String CPF);	
+	Boolean existBaseName(String baseName);	
 }

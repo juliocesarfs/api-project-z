@@ -71,7 +71,4 @@ public @Data class Survivor {
 	@Column( name = "infected", nullable = true )
 	private Boolean infected;
 
-	@ManyToOne
-	@JoinColumn( name = "base_id", nullable = true)
-	private Base base;
 }

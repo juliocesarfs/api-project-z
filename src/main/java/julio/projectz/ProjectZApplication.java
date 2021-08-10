@@ -16,11 +16,6 @@ import julio.projectz.service.SurvivorService;
 @SpringBootApplication
 public class ProjectZApplication {
 
-	@Autowired
-	private SurvivorService survivorService;
-
-	@Autowired
-	private BaseService baseService;
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectZApplication.class, args);
 	}

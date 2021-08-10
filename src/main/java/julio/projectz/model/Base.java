@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -30,26 +29,20 @@ public @Data class Base {
 
   @Id
 	@SequenceGenerator(
-			name = "survivor_sequence",
-			sequenceName = "survivor_sequence",
+			name = "base_sequence",
+			sequenceName = "base_sequence",
 			allocationSize = 1,
 			initialValue = 1
 			)
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
-			generator = "survivor_sequence"
+			generator = "base_sequence"
 			)
-	private Long base_id;
+	private Long id;
 
-  @NotEmpty( message = "{baseName.not.empty}")
+  @NotEmpty
 	@Column( name = "baseName", nullable = false, length = 100, unique = true )
 	private String baseName;
-
-  @Column( name = "totalSurvivors", nullable = true )
-	private Integer totalSurvivors;
-
-  @OneToMany(mappedBy = "base")
-  private Set<Survivor> survivors;
 
 	public Base(String baseName) {
 		this.baseName = baseName;

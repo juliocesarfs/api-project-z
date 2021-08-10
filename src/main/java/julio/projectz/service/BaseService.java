@@ -23,8 +23,6 @@ public class BaseService {
       throw new IllegalStateException("Base: "+base.getBaseName()+" essa base já existe.");
     }
 
-    base.setTotalSurvivors(0);
-
     Base baseReturn = baseRepository.save(base);
     
     return baseReturn;
@@ -81,17 +79,4 @@ public class BaseService {
 
 		return base;
 	}
-
-  public Base addSurvivor(Long idBase) {
-    Base base = getBase(idBase);
-
-    Integer totalSurvivors = base.getTotalSurvivors();
-    totalSurvivors += 1;
-
-    base.setTotalSurvivors(totalSurvivors);
-
-    base = baseRepository.save(base);
-
-    return base;
-  }
 }
