@@ -1,4 +1,4 @@
-package julio.projectz.repository;
+package julio.projectz.application.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import julio.projectz.model.Survivor;
+import julio.projectz.application.model.Survivor;
 
 @Repository
 public interface SurvivorRepository extends JpaRepository<Survivor, Long>{

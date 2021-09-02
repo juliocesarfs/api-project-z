@@ -1,4 +1,4 @@
-package julio.projectz.service;
+package julio.projectz.application.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import julio.projectz.model.Survivor;
-import julio.projectz.repository.SurvivorRepository;
+import julio.projectz.application.model.Survivor;
+import julio.projectz.application.repository.SurvivorRepository;
 
 @Service
 public class SurvivorService {

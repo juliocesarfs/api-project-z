@@ -1,4 +1,4 @@
-package julio.projectz.controller;
+package julio.projectz.application.controller;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import julio.projectz.model.Survivor;
-import julio.projectz.service.SurvivorService;
+import julio.projectz.application.model.Survivor;
+import julio.projectz.application.service.SurvivorService;
 
 @RestController
 @RequestMapping( path = "api/v1/survivor")

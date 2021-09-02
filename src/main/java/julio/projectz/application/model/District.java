@@ -1,13 +1,10 @@
-package julio.projectz.model;
-
-import java.util.Set;
+package julio.projectz.application.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -17,34 +14,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@Entity( name = "Base" )
+@Entity( name = "District" )
 @Table(
-		name = "Bases",
+		name = "Districts",
 		uniqueConstraints = {
-			@UniqueConstraint( name = "uk_base_unique_name", columnNames = "baseName")
+			@UniqueConstraint( name = "uk_district_unique_name", columnNames = "districtName")
 	}
 )
 
-public @Data class Base {
+public @Data class District {
 
   @Id
 	@SequenceGenerator(
-			name = "base_sequence",
-			sequenceName = "base_sequence",
+			name = "district_sequence",
+			sequenceName = "district_sequence",
 			allocationSize = 1,
 			initialValue = 1
 			)
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
-			generator = "base_sequence"
+			generator = "district_sequence"
 			)
 	private Long id;
 
   @NotEmpty
-	@Column( name = "baseName", nullable = false, length = 100, unique = true )
-	private String baseName;
+	@Column( name = "districtName", nullable = false, length = 100, unique = true )
+	private String districtName;
 
-	public Base(String baseName) {
-		this.baseName = baseName;
+	public District(String districtName) {
+		this.districtName = districtName;
 	}
 }
